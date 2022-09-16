@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setisClicked] = useState(initialState);
 const [screenSize, setScreenSize] = useState(undefined)
-const [bluecolor, setBluecolor] = useState('rgb(3,205,215')
+const [currentColor, setcurrentColor] = useState('rgb(3,205,215')
 
 
   const handleClick = (clicked) => {
@@ -20,7 +20,7 @@ const [bluecolor, setBluecolor] = useState('rgb(3,205,215')
   };
   return (
     <StateContext.Provider
-      value={{ activeMenu, setActiveMenu, isClicked, setisClicked,handleClick,screenSize, setScreenSize,bluecolor}}
+      value={{ activeMenu, setActiveMenu, isClicked, setisClicked,handleClick,screenSize, setScreenSize,currentColor}}
     >
       {children}
     </StateContext.Provider>
