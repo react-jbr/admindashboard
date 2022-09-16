@@ -11,7 +11,7 @@ import "./App.css";
 
 
 const App = () => {
-   const {activeMenu}=useStateContext();
+   const {activeMenu,bluecolor}=useStateContext();
   // const activeMenu=true;
   
   return (
@@ -23,7 +23,7 @@ const App = () => {
             <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
-                style={{ background: "blue", borderRadius: "50%" }}
+                style={{ background: bluecolor, borderRadius: "50%" }}
                 className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
               >
                 <FiSettings />
