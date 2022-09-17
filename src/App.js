@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -7,9 +7,18 @@ import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Ka
 import { useStateContext } from "./contexts/ContextProvider";
 
 import "./App.css";const App = () => {
-   const {activeMenu,currentColor}=useStateContext();
+  const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+   useEffect(() => {
+    const currentThemeColor = localStorage.getItem('colorMode');
+    const currentThemeMode = localStorage.getItem('themeMode');
+    if (currentThemeColor && currentThemeMode) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode);
+    }
+  }, []);
+
   return (
-    <div>
+    <div className={currentMode === 'Dark' ? 'dark' : ''}>
       {" "}
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
@@ -17,6 +26,7 @@ import "./App.css";const App = () => {
             <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
+                onClick={() => setThemeSettings(true)}
                 style={{ background: currentColor, borderRadius: "50%" }}
                 className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
               >
@@ -40,9 +50,9 @@ import "./App.css";const App = () => {
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
               <Navbar />
-            </div>
-         
+            </div>         
           <div>
+            {themeSettings && (<ThemeSettings />)}
           <Routes>
             {/* Dashboards */}
             <Route path="/" element={<Ecommerce/>} />
