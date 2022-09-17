@@ -31,4 +31,4 @@ const Area = () => {
   );
 };
 
-export default  Area;
+export default Area;
